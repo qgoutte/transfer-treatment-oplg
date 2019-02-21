@@ -2,7 +2,7 @@ class Transfer(var transferId: Int,
                var accountFrom: String,
                var accountTo: String,
                var amount: Double,
-               var currancy: String,
+               var currency: String,
                var status: String) {
 
 
