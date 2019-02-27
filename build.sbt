@@ -10,3 +10,8 @@ libraryDependencies ++= Seq(
   "com.typesafe.akka" %% "akka-http"            % "10.1.7",
   "com.typesafe.akka" %% "akka-http-spray-json" % "10.1.7"
 )
+
+enablePlugins(JavaAppPackaging)
+enablePlugins(DockerPlugin)
+
+mainClass in Compile := Some("Application")
