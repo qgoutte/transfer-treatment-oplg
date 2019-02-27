@@ -14,4 +14,6 @@ libraryDependencies ++= Seq(
 enablePlugins(JavaAppPackaging)
 enablePlugins(DockerPlugin)
 
+dockerExposedPorts ++= Seq(8080)
+
 mainClass in Compile := Some("Application")
