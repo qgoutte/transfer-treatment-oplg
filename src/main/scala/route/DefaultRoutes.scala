@@ -1,7 +1,5 @@
 package route
 
-import java.util.concurrent.TimeUnit
-
 import akka.actor.{ActorRef, ActorSystem}
 import akka.event.Logging
 import akka.http.scaladsl.server.Directives.pathPrefix
@@ -15,16 +13,17 @@ import model.HeartbeatActor.GetHeartbeat
 import util.JsonSupport
 
 import scala.concurrent.Future
+import scala.concurrent.duration._
 
 trait DefaultRoutes extends JsonSupport {
 
   implicit def system: ActorSystem
 
-  lazy val log = Logging(system, classOf[DefaultRoutes])
+  private lazy val log = Logging(system, classOf[DefaultRoutes])
 
   def heartbeatActor: ActorRef
 
-  implicit lazy val timeout: Timeout = Timeout(5, TimeUnit.SECONDS)
+  implicit lazy val timeout: Timeout = Timeout(5, SECONDS)
 
   lazy val heartbeatRoute: Route =
     pathPrefix("heartbeat") {
