@@ -3,7 +3,7 @@ import akka.http.scaladsl.Http
 import akka.http.scaladsl.server.Directives.concat
 import akka.http.scaladsl.server.Route
 import akka.stream.ActorMaterializer
-import model.{HeartbeatActor, TransferActor}
+import actor.{HeartbeatActor, TransferActor}
 import route.{DefaultRoutes, TransferRoutes}
 
 import scala.concurrent.duration.Duration

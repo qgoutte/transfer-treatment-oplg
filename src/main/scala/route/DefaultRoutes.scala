@@ -8,8 +8,8 @@ import akka.http.scaladsl.server.directives.MethodDirectives.get
 import akka.http.scaladsl.server.directives.RouteDirectives.complete
 import akka.pattern.ask
 import akka.util.Timeout
-import model.Heartbeat
-import model.HeartbeatActor.GetHeartbeat
+import actor.Heartbeat
+import actor.HeartbeatActor.GetHeartbeat
 import util.JsonSupport
 
 import scala.concurrent.Future

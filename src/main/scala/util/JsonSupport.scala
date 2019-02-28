@@ -1,8 +1,8 @@
 package util
 
 import akka.http.scaladsl.marshallers.sprayjson.SprayJsonSupport
-import model.TransferActor.ActionPerformed
-import model.{Heartbeat, Transfer, Transfers}
+import actor.TransferActor.ActionPerformed
+import actor.{Heartbeat, Transfer, Transfers}
 import spray.json.{DefaultJsonProtocol, RootJsonFormat}
 
 trait JsonSupport extends SprayJsonSupport {

@@ -10,8 +10,8 @@ import akka.http.scaladsl.server.directives.PathDirectives.path
 import akka.http.scaladsl.server.directives.RouteDirectives.complete
 import akka.pattern.ask
 import akka.util.Timeout
-import model.TransferActor._
-import model.{Transfer, Transfers}
+import actor.TransferActor._
+import actor.{Transfer, Transfers}
 import util.JsonSupport
 
 import scala.concurrent.Future

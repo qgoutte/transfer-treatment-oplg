@@ -1,4 +1,4 @@
-package model
+package actor
 
 import akka.actor.{ Actor, ActorLogging, Props }
 
