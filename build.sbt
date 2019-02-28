@@ -5,6 +5,7 @@ scalaVersion  := "2.12.8"
 lazy val akkaHttpVersion = "10.1.7"
 lazy val akkaVersion     = "2.5.21"
 lazy val mongoVersion = "2.4.2"
+lazy val kafkaVersion = "0.8.0"
 
 libraryDependencies ++= Seq(
   "com.typesafe.akka" %% "akka-http"            % akkaHttpVersion,
@@ -12,6 +13,7 @@ libraryDependencies ++= Seq(
   "com.typesafe.akka" %% "akka-http-xml"        % akkaHttpVersion,
   "com.typesafe.akka" %% "akka-stream"          % akkaVersion,
   "org.mongodb.scala" %% "mongo-scala-driver" % mongoVersion,
+  "org.apache.kafka" %% "kafka" % kafkaVersion,
 )
 
 enablePlugins(JavaAppPackaging)
