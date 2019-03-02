@@ -5,13 +5,13 @@ import akka.event.Logging
 import akka.http.scaladsl.model.StatusCodes
 import akka.http.scaladsl.server.Directives._
 import akka.http.scaladsl.server.Route
-import akka.http.scaladsl.server.directives.MethodDirectives.{delete, get, post}
+import akka.http.scaladsl.server.directives.MethodDirectives.{delete, get, post, put}
 import akka.http.scaladsl.server.directives.PathDirectives.path
 import akka.http.scaladsl.server.directives.RouteDirectives.complete
 import akka.pattern.ask
 import akka.util.Timeout
 import actor.TransferActor._
-import actor.{Transfer, Transfers}
+import actor.{Transfer, TransferStatus, Transfers}
 import util.JsonSupport
 
 import scala.concurrent.Future
@@ -66,6 +66,18 @@ trait TransferRoutes extends JsonSupport {
               }
             }
           )
+        },
+        path(Segment / "status") { id =>
+          put {
+            entity(as[TransferStatus]) { status =>
+              val transferUpdated: Future[ActionPerformed] =
+                (transferActor ? UpdateTransferStatus(id.toInt, status)).mapTo[ActionPerformed]
+              onSuccess(transferUpdated) { performed =>
+                log.info("Updated transfer [{}]: {}", id, performed.description)
+                complete((StatusCodes.OK, performed))
+              }
+            }
+          }
         }
       )
     }

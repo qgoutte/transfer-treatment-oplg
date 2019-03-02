@@ -2,14 +2,16 @@ package actor
 
 import akka.actor.{ Actor, ActorLogging, Props }
 
-final case class Transfer(id: Int, accountFrom: String, accountTo: String, amount: Double, currency: String, status: String)
+final case class Transfer(id: Int, accountFrom: String, accountTo: String, amount: Double, currency: String, var status: String)
 final case class Transfers(transfers: Seq[Transfer])
+final case class TransferStatus(value: String)
 
 object TransferActor {
   final case class ActionPerformed(description: String)
   final case object GetTransfers
   final case class CreateTransfer(transfer: Transfer)
   final case class GetTransfer(id: Int)
+  final case class UpdateTransferStatus(id: Int, status: TransferStatus)
   final case class DeleteTransfer(id: Int)
 
   def props: Props = Props[TransferActor]
@@ -33,6 +35,9 @@ class TransferActor extends Actor with ActorLogging {
       sender() ! ActionPerformed(s"Transfer ${transfer.id} created.")
     case GetTransfer(id) =>
       sender() ! transfers.find(_.id == id)
+    case UpdateTransferStatus(id, status) => 
+      transfers.find(_.id == id) foreach { transfer => transfer.status = status.value }
+      sender() ! ActionPerformed(s"Transfer $id updated with status '${status.value}'.")
     case DeleteTransfer(id) =>
       transfers.find(_.id == id) foreach { transfer => transfers -= transfer }
       sender() ! ActionPerformed(s"Transfer $id deleted.")

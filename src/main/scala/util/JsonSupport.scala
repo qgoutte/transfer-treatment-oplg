@@ -2,7 +2,7 @@ package util
 
 import akka.http.scaladsl.marshallers.sprayjson.SprayJsonSupport
 import actor.TransferActor.ActionPerformed
-import actor.{Heartbeat, Transfer, Transfers}
+import actor.{Heartbeat, Transfer, TransferStatus, Transfers}
 import spray.json.{DefaultJsonProtocol, RootJsonFormat}
 
 trait JsonSupport extends SprayJsonSupport {
@@ -12,6 +12,7 @@ trait JsonSupport extends SprayJsonSupport {
 
   implicit val transferJsonFormat: RootJsonFormat[Transfer] = jsonFormat6(Transfer)
   implicit val transfersJsonFormat: RootJsonFormat[Transfers] = jsonFormat1(Transfers)
+  implicit val transferStatusJsonFormat: RootJsonFormat[TransferStatus] = jsonFormat1(TransferStatus)
 
   implicit val actionPerformedJsonFormat: RootJsonFormat[ActionPerformed] = jsonFormat1(ActionPerformed)
 }
