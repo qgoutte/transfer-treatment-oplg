@@ -1,10 +1,10 @@
-package database
+package service
 
 import org.mongodb.scala._
 import org.mongodb.scala.model.Filters._
 import org.mongodb.scala.model.Updates._
 
-class TransferDatabase {
+object DatabaseService {
 
   //VARIABLES
   // To directly connect to the default server localhost on port 27017
