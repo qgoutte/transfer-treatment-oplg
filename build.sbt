@@ -4,7 +4,7 @@ scalaVersion  := "2.12.8"
 
 lazy val akkaHttpVersion = "10.1.7"
 lazy val akkaVersion     = "2.5.21"
-lazy val mongoVersion    = "2.4.2"
+lazy val mongoVersion    = "2.6.0"
 lazy val kafkaVersion    = "2.1.1"
 
 libraryDependencies ++= Seq(
