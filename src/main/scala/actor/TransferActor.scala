@@ -32,7 +32,7 @@ class TransferActor extends Actor with ActorLogging with JsonSupport {
       sender() ! Transfers(DatabaseService.getAllTransfers())
 
     case CreateTransfer(transfer) =>
-      MessagingService.kafkaPublisher(transfer.toString)
+      MessagingService.publish(transfer.toString)
       sender() ! ActionPerformed(s"Transfer ${transfer.id} created.")
 
     case GetTransfer(id) =>
@@ -40,12 +40,12 @@ class TransferActor extends Actor with ActorLogging with JsonSupport {
 
     case UpdateTransferStatus(id, status) =>
       val tranferUpdate = TransferUpdateEvent(DatabaseService.getTransferById(id), status)
-      MessagingService.kafkaPublisher(tranferUpdate.toJson.prettyPrint)
+      MessagingService.publish(tranferUpdate.toJson.prettyPrint)
       sender() ! ActionPerformed(s"Transfer $id updated with status '${status.value}'.")
 
     case DeleteTransfer(id) =>
       val transferDelete = TransferDeleteEvent(DatabaseService.getTransferById(id))
-      MessagingService.kafkaPublisher(transferDelete.toJson.prettyPrint)
+      MessagingService.publish(transferDelete.toJson.prettyPrint)
       sender() ! ActionPerformed(s"Transfer $id deleted.")
   }
 }
