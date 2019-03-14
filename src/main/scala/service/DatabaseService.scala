@@ -16,7 +16,7 @@ object DatabaseService {
   // To directly connect to the default server localhost on port 27017
   val mongoClient: MongoClient = MongoClient()
 
-  val codecRegistry: CodecRegistry = fromRegistries(fromProviders(classOf[Transfer]), DEFAULT_CODEC_REGISTRY )
+  val codecRegistry: CodecRegistry = fromRegistries(fromProviders(classOf[Transfer]), DEFAULT_CODEC_REGISTRY)
 
   // WARNING DB needs "transfers-db" as name
   val database: MongoDatabase = mongoClient.getDatabase("transfers-db").withCodecRegistry(codecRegistry)
@@ -26,13 +26,13 @@ object DatabaseService {
 
   //FUNCTIONS
   //Return all transfers
-  def getAllTransfers(): Seq[Transfer] = {
+  def getAllTransfers: Seq[Transfer] = {
     collection.find().results()
   }
 
   //Return one transfer with this id
   def getTransferById(id: Integer): Transfer = {
-    collection.find(equal("id", id)).first().headResult()
+    collection.find(equal("id", id)).headResult()
   }
 
   //Return all documents with the status in parameter
