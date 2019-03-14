@@ -29,7 +29,7 @@ class TransferActor extends Actor with ActorLogging with JsonSupport {
 
   def receive: Receive = {
     case GetTransfers =>
-      sender() ! Transfers(DatabaseService.getAllTransfers())
+      sender() ! Transfers(DatabaseService.getAllTransfers)
 
     case CreateTransfer(transfer) =>
       MessagingService.publish(transfer.toString)
@@ -39,8 +39,8 @@ class TransferActor extends Actor with ActorLogging with JsonSupport {
       sender() ! DatabaseService.getTransferById(id)
 
     case UpdateTransferStatus(id, status) =>
-      val tranferUpdate = TransferUpdateEvent(DatabaseService.getTransferById(id), status)
-      MessagingService.publish(tranferUpdate.toJson.prettyPrint)
+      val transferUpdate = TransferUpdateEvent(DatabaseService.getTransferById(id), status)
+      MessagingService.publish(transferUpdate.toJson.prettyPrint)
       sender() ! ActionPerformed(s"Transfer $id updated with status '${status.value}'.")
 
     case DeleteTransfer(id) =>
