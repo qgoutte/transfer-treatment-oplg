@@ -51,10 +51,10 @@ trait TransferRoutes extends JsonSupport {
         path(Segment) { id =>
           concat(
             get {
-              val maybeTransfer: Future[Option[Transfer]] =
-                (transferActor ? GetTransfer(id.toInt)).mapTo[Option[Transfer]]
+              val transfer: Future[Transfer] =
+                (transferActor ? GetTransfer(id.toInt)).mapTo[Transfer]
               rejectEmptyResponse {
-                complete(maybeTransfer)
+                complete(transfer)
               }
             },
             delete {
