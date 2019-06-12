@@ -6,5 +6,5 @@ This repository is part of an experimental project on Event Sourcing architectur
 
 ## Authors
 
-* **Evan Suau**  - *Initial part, tests, handler optimisation * - [esuau](https://github.com/esuau)
-* **Quentin Goutte** - *Initial part, Kafka & Mongo implementation * - [qgoutte](https://github.com/qgoutte)
+* **Evan Suau**  - *Initial part, tests, handler optimisation* - [esuau](https://github.com/esuau)
+* **Quentin Goutte** - *Initial part, Kafka & Mongo implementation* - [qgoutte](https://github.com/qgoutte)
